@@ -21,14 +21,16 @@ from spotipy_types.models import (
     PlaylistObject,
     EpisodeObject,
     ShowObject,
-    UserObject,
     DeviceObject,
+    # User Objects (both private and public)
+    PrivateUserObject,
+    PublicUserObject,
     # Response Types
-    SearchResponse,
     PagingObject,
     CursorPagingObject,
     # Audio Features
     AudioFeaturesObject,
+    AudioAnalysisObject,
     # Simplified Objects
     SimplifiedTrackObject,
     SimplifiedAlbumObject,
@@ -41,15 +43,97 @@ from spotipy_types.models import (
     FollowersObject,
     ExternalUrlObject,
     ExternalIdObject,
-    RestrictionsObject,
+    # Restriction Objects
+    TrackRestrictionObject,
+    AlbumRestrictionObject,
+    EpisodeRestrictionObject,
+    ChapterRestrictionObject,
     # Error Handling
     ErrorObject,
-    # Context
+    # Context and Playback
     ContextObject,
     CurrentlyPlayingObject,
-    PlaybackStateObject,
-    # All models (re-export everything)
-    *
+    CurrentlyPlayingContextObject,
+    PlayHistoryObject,
+    QueueObject,
+    # Playlist
+    PlaylistTrackObject,
+    # Saved Objects
+    SavedTrackObject,
+    SavedAlbumObject,
+    SavedShowObject,
+    SavedEpisodeObject,
+    # Recommendations
+    RecommendationsObject,
+    RecommendationSeedObject,
+    # Search (inline type - no separate SearchResponse class)
+    # Copyright
+    CopyrightObject,
+    # Resume Point
+    ResumePointObject,
+    # Linked Track
+    LinkedTrackObject,
+    # Time Interval
+    TimeIntervalObject,
+    # Cursor
+    CursorObject,
+    # Disallows
+    DisallowsObject,
+    # Narrator and Author
+    NarratorObject,
+    AuthorObject,
+    # Audiobooks and Chapters
+    AudiobookObject,
+    SimplifiedAudiobookObject,
+    ChapterObject,
+    SimplifiedChapterObject,
+    SavedAudiobookObject,
+    # Categories
+    CategoryObject,
+    # Section and Segment
+    SectionObject,
+    SegmentObject,
+    # Playlist User/Owner
+    PlaylistUserObject,
+    PlaylistOwnerObject,
+    # Playlist Tracks Reference
+    PlaylistTracksRefObject,
+    # Explicit Content Settings
+    ExplicitContentSettingsObject,
+    # Paging variants
+    PagingTrackObject,
+    PagingArtistObject,
+    PagingPlaylistObject,
+    PagingPlaylistTrackObject,
+    PagingSavedTrackObject,
+    PagingSavedAlbumObject,
+    PagingSavedShowObject,
+    PagingSavedEpisodeObject,
+    PagingSimplifiedTrackObject,
+    PagingSimplifiedAlbumObject,
+    PagingSimplifiedShowObject,
+    PagingSimplifiedAudiobookObject,
+    PagingSimplifiedEpisodeObject,
+    PagingSimplifiedChapterObject,
+    PagingArtistDiscographyAlbumObject,
+    PagingSavedAudiobookObject,
+    CursorPagingSimplifiedArtistObject,
+    CursorPagingPlayHistoryObject,
+    # Featured playlists
+    PagingFeaturedPlaylistObject,
+    # Saved wrapper objects
+    SavedTrackObject,
+    SavedAlbumObject,
+    SavedShowObject,
+    SavedEpisodeObject,
+    SavedAudiobookObject,
+    # Discography
+    ArtistDiscographyAlbumObject,
+    # Enums and other types
+    Reason,
+    Type,
+    Mode1,
+    Pitch,
 )
 
 __all__ = [
@@ -63,14 +147,16 @@ __all__ = [
     "PlaylistObject",
     "EpisodeObject",
     "ShowObject",
-    "UserObject",
     "DeviceObject",
+    # User Objects
+    "PrivateUserObject",
+    "PublicUserObject",
     # Response Types
-    "SearchResponse",
     "PagingObject",
     "CursorPagingObject",
     # Audio Features
     "AudioFeaturesObject",
+    "AudioAnalysisObject",
     # Simplified Objects
     "SimplifiedTrackObject",
     "SimplifiedAlbumObject",
@@ -78,16 +164,93 @@ __all__ = [
     "SimplifiedPlaylistObject",
     "SimplifiedEpisodeObject",
     "SimplifiedShowObject",
+    "SimplifiedAudiobookObject",
+    "SimplifiedChapterObject",
     # Other Common Types
     "ImageObject",
     "FollowersObject",
     "ExternalUrlObject",
     "ExternalIdObject",
-    "RestrictionsObject",
+    # Restriction Objects
+    "TrackRestrictionObject",
+    "AlbumRestrictionObject",
+    "EpisodeRestrictionObject",
+    "ChapterRestrictionObject",
     # Error Handling
     "ErrorObject",
-    # Context
+    # Context and Playback
     "ContextObject",
     "CurrentlyPlayingObject",
-    "PlaybackStateObject",
+    "CurrentlyPlayingContextObject",
+    "PlayHistoryObject",
+    "QueueObject",
+    # Playlist
+    "PlaylistTrackObject",
+    # Saved Objects
+    "SavedTrackObject",
+    "SavedAlbumObject",
+    "SavedShowObject",
+    "SavedEpisodeObject",
+    "SavedAudiobookObject",
+    # Recommendations
+    "RecommendationsObject",
+    "RecommendationSeedObject",
+    # Copyright
+    "CopyrightObject",
+    # Resume Point
+    "ResumePointObject",
+    # Linked Track
+    "LinkedTrackObject",
+    # Time Interval
+    "TimeIntervalObject",
+    # Cursor
+    "CursorObject",
+    # Disallows
+    "DisallowsObject",
+    # Narrator and Author
+    "NarratorObject",
+    "AuthorObject",
+    # Audiobooks and Chapters
+    "AudiobookObject",
+    "ChapterObject",
+    # Categories
+    "CategoryObject",
+    # Section and Segment
+    "SectionObject",
+    "SegmentObject",
+    # Playlist User/Owner
+    "PlaylistUserObject",
+    "PlaylistOwnerObject",
+    # Playlist Tracks Reference
+    "PlaylistTracksRefObject",
+    # Explicit Content Settings
+    "ExplicitContentSettingsObject",
+    # Paging variants
+    "PagingTrackObject",
+    "PagingArtistObject",
+    "PagingPlaylistObject",
+    "PagingPlaylistTrackObject",
+    "PagingSavedTrackObject",
+    "PagingSavedAlbumObject",
+    "PagingSavedShowObject",
+    "PagingSavedEpisodeObject",
+    "PagingSimplifiedTrackObject",
+    "PagingSimplifiedAlbumObject",
+    "PagingSimplifiedShowObject",
+    "PagingSimplifiedAudiobookObject",
+    "PagingSimplifiedEpisodeObject",
+    "PagingSimplifiedChapterObject",
+    "PagingArtistDiscographyAlbumObject",
+    "PagingSavedAudiobookObject",
+    "CursorPagingSimplifiedArtistObject",
+    "CursorPagingPlayHistoryObject",
+    # Featured playlists
+    "PagingFeaturedPlaylistObject",
+    # Discography
+    "ArtistDiscographyAlbumObject",
+    # Enums and other types
+    "Reason",
+    "Type",
+    "Mode1",
+    "Pitch",
 ]
