@@ -16,6 +16,10 @@ This package provides complete Python type hints for the Spotify Web API by auto
 - **Type-safe** development with mypy support
 - **JSON serialization** for caching and storage
 
+## Why?
+
+Because spotipy provides no typing support and I wanted to add proper typing for my other project. This was the git to my Linux, except much less daunting. 
+
 ## Installation
 
 ```bash
